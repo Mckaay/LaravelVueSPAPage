@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('company');
             $table->string('model');
             $table->string('price');
-            $table->string('year');
+            $table->string('year',4);
             $table->timestamps();
         });
     }

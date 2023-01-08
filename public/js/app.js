@@ -21747,7 +21747,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return axios.get('/api/cars');
             case 3:
               response = _context.sent;
-              _this.cars = response.data;
+              _this.cars = response.data.data;
               _context.next = 10;
               break;
             case 7:

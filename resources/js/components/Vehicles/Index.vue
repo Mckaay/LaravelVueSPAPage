@@ -54,7 +54,7 @@
             async fetchCars(){
                 try{
                     const response = await axios.get('/api/cars');
-                    this.cars = response.data;
+                    this.cars = response.data.data;
                 } catch(error) {
                     console.log(error);
                 }
