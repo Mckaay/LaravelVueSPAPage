@@ -25,28 +25,12 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                <tr>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">1</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">Tesla</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">Model Y Long Range Dual Motor</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">0</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">2020</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900"></td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">2</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">Tesla</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">Model Y Long Range Dual Motor</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">0</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">2020</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900"></td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">3</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">Tesla</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">Model Y Long Range Dual Motor</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">0</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">2020</td>
+                <tr v-for="car in cars">
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.id }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.company }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.model }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.price }}</td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.year }}</td>
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900"></td>
                 </tr>
                 </tbody>
@@ -54,3 +38,31 @@
         </div>
     </div>
 </template>
+
+<script>
+
+    export default {
+        data() {
+            return {
+                cars: []
+            }
+        },
+        mounted() {
+            this.fetchCars();
+        },
+        methods: {
+            async fetchCars(){
+                try{
+                    const response = await axios.get('/api/cars');
+                    this.cars = response.data;
+                } catch(error) {
+                    console.log(error);
+                }
+            }
+        }
+    }
+
+
+
+
+</script>
