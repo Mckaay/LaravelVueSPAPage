@@ -25,7 +25,7 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                <tr v-for="car in cars">
+                <tr v-for="car in cars.data" :key = "car.id">
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.id }}</td>
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.company }}</td>
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.model }}</td>
@@ -35,6 +35,11 @@
                 </tr>
                 </tbody>
             </table>
+
+            <TailwindPagination class = "py-4"
+                :data="cars"
+                @pagination-change-page="fetchCars"
+            />
         </div>
     </div>
 </template>
@@ -44,17 +49,17 @@
     export default {
         data() {
             return {
-                cars: []
+                cars: {}
             }
         },
         mounted() {
             this.fetchCars();
         },
         methods: {
-            async fetchCars(){
+            async fetchCars(page = 1){
                 try{
-                    const response = await axios.get('/api/cars');
-                    this.cars = response.data.data;
+                    const response = await axios.get('/api/cars?page=' + page);
+                    this.cars = response.data;
                 } catch(error) {
                     console.log(error);
                 }

@@ -10,6 +10,6 @@ use App\Models\Car;
 class CarController extends Controller
 {
     public function index(){
-        return CarResource::collection(Car::all());
+        return CarResource::collection(Car::paginate(5));
     }
 }
