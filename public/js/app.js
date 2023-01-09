@@ -22068,8 +22068,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": () => (/* binding */ render)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div><label for=\"car-company\" class=\"block font-medium text-sm text-gray-700\"> Company </label><input id=\"car-company\" type=\"text\" class=\"block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50\" required></div><div class=\"mt-4\"><label for=\"car-model\" class=\"block font-medium text-sm text-gray-700\"> Model </label><input id=\"car-model\" type=\"text\" class=\"block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50\" required></div><div class=\"mt-4\"><label for=\"car-price\" class=\"block font-medium text-sm text-gray-700\"> Price </label><input id=\"car-price\" type=\"number\" class=\"block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50\" step=\"0.01\" min=\"0.01\" required></div><div class=\"mt-4\"><label for=\"car-year\" class=\"block font-medium text-sm text-gray-700\"> Production year </label><input id=\"car-year\" type=\"number\" min=\"1900\" max=\"2023\" class=\"block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50\" step=\"1\" required></div><div class=\"mt-4\"><button class=\"px-3 py-2 bg-blue-600 text-white rounded\">Save</button></div>", 5);
+var _hoisted_6 = [_hoisted_1];
 function render(_ctx, _cache) {
-  return " Vue router working.. ";
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
+    onSubmit: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return _ctx.test && _ctx.test.apply(_ctx, arguments);
+    }, ["prevent"]))
+  }, _hoisted_6, 32 /* HYDRATE_EVENTS */);
 }
 
 /***/ }),
@@ -22211,7 +22219,7 @@ var _hoisted_2 = {
   "class": "bg-white border-b border-gray-100"
 };
 var _hoisted_3 = {
-  "class": "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+  "class": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
 };
 var _hoisted_4 = {
   "class": "flex justify-between h-16"
@@ -22246,7 +22254,7 @@ var _hoisted_11 = {
   "class": "py-12"
 };
 var _hoisted_12 = {
-  "class": "w-full sm:px-6 lg:px-8"
+  "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
 };
 var _hoisted_13 = {
   "class": "bg-white overflow-hidden shadow-sm sm:rounded-lg"

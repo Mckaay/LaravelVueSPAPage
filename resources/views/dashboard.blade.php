@@ -14,6 +14,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="max-w-6xl mx-auto font-sans antialiased" id="app">
+<body class="font-sans antialiased" id="app">
 </body>
 </html>
