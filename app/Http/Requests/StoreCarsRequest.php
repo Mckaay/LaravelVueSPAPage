@@ -24,10 +24,10 @@ class StoreCarsRequest extends FormRequest
     public function rules()
     {
         return [
-            'company' => 'required',
-            'model' => 'required',
-            'price' => 'required',
-            'year' => 'required',
+            'company' => 'required|max:50|regex:/^[\pL\s]+$/u',
+            'model' => 'required|max:50|regex:/^[\pL\s]+$/u',
+            'price' => 'required|max:20|regex:/^[\pL\s]+$/u',
+            'year' => 'required|max:4|regex:/^[0-9]+$/',
         ];
     }
 }
