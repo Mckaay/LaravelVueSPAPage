@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="updateCars">
+    <form @submit.prevent="updateCar">
         <div>
             <label for="car-company" class="block font-medium text-sm text-gray-700">
                 Company
@@ -53,12 +53,14 @@
 
 <script>
 import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 export default {
     data() {
         return {
             car: {},
             route: useRoute(),
+            router: useRouter(),
             validationErrors: []
         }
     },
@@ -72,6 +74,15 @@ export default {
                 const response = await axios.get('/api/cars/' + id)
                 this.car = response.data.data;
             } catch(error) {
+                console.log(error);
+            }
+        },
+
+        async updateCar(){
+            try{
+                const response = await axios.put('/api/cars/' + this.car.id,this.car);
+                await this.router.push({ name: 'cars.index' });
+            } catch (error) {
                 console.log(error);
             }
         }

@@ -31,4 +31,11 @@ class CarController extends Controller
     public function show(Car $car){
         return new CarResource($car);
     }
+
+    public function update(Car $car,StoreCarsRequest $request)
+    {
+        $car->update($request->validated());
+        return new CarResource($car);
+    }
+
 }
