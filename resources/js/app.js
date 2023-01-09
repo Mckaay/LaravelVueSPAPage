@@ -9,8 +9,8 @@ import App from './layouts/App';
 import { TailwindPagination } from 'laravel-vue-pagination';
 
 const routes = [
-    { path: '/', component: VehiclesIndex },
-    { path: '/cars/create', component: VehiclesCreate }
+    { path: '/', name: 'cars.index', component: VehiclesIndex, meta: { title: 'Electric Vehicles Dashboard'} },
+    { path: '/cars/create', name: 'cars.create', component: VehiclesCreate, meta: { title: 'Add Electric Vehicle'} }
 ]
 
 

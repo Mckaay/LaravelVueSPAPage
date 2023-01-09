@@ -16,10 +16,10 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <router-link to="/" active-class="border-b-2 border-indigo-400" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
+                            <router-link :to="{ name: 'cars.index'} " active-class="border-b-2 border-indigo-400" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
                                 Electric Vehicles
                             </router-link>
-                            <router-link to="/cars/create" active-class="border-b-2 border-indigo-400" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
+                            <router-link :to="{ name: 'cars.create'} " active-class="border-b-2 border-indigo-400" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
                                 Create Electric Vehicle
                             </router-link>
                         </div>
@@ -32,7 +32,7 @@
         <header class="bg-white shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <h2 class="font-semi-bold text-xl text-gray-800 leading-tight">
-                    Dashboard
+                    {{ currentPageTitle }}
                 </h2>
             </div>
         </header>
@@ -51,3 +51,16 @@
         </main>
     </div>
 </template>
+
+
+<script>
+    export default {
+        computed: {
+            currentPageTitle(){
+                return this.$route.meta.title;
+            }
+        }
+    }
+
+
+</script>
