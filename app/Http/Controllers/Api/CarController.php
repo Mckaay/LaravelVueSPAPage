@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCarsRequest;
 use App\Http\Resources\CarResource;
 use Illuminate\Http\Request;
 use App\Models\Car;
@@ -20,5 +21,10 @@ class CarController extends Controller
         } else {
             return CarResource::collection(Car::paginate(5));
         }
+    }
+
+    public function store(StoreCarsRequest $request) {
+        $car = Car::create($request->validated());
+        return new CarResource($car);
     }
 }
