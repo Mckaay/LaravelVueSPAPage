@@ -43,6 +43,7 @@
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.year }}</td>
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
                         <router-link :to =" { name: 'cars.edit', params: {id: car.id}} ">Edit</router-link>
+                        <a href="#" @click.prevent = "deleteCar(car.id)" class = "ml-2 text-red-600">Delete</a>
                     </td>
                 </tr>
                 </tbody>
@@ -57,12 +58,14 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router'
 
     export default {
         data() {
             return {
                 cars: {},
-                search: ''
+                search: '',
+                router: useRouter()
             }
         },
         mounted() {
@@ -85,8 +88,46 @@
                     );
                     this.cars = response.data;
                 } catch(error) {
+                    this.$swal({
+                        icon: 'error',
+                        title: 'Something went wrong! Check console.'
+                    });
                     console.log(error);
                 }
+            },
+            async deleteCar(id){
+                    this.$swal({
+                        title:'Are you sure',
+                        text: 'You are about to delete Electriv Vehicle',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Delete',
+                        confirmButtonColor: '#ef4444',
+                        timer: 20000,
+                        timerProgressBar: true,
+                        reverseButtons: true
+                    })
+                        .then(result => {
+                            if(result.isConfirmed) {
+                                axios.delete('/api/cars/' + id)
+                                    .then(response => {
+                                        this.fetchCars()
+                                        this.router.push({ name: 'cars.index' })
+                                        this.$swal({
+                                            icon:'success',
+                                                title: 'Electric Vehicle deleted successfully'
+
+                                        })
+                                    })
+                                    .catch(error => {
+                                        this.$swal({
+                                            icon:'error',
+                                            title: 'Something went wrong. Check console or logs!'
+                                        })
+                                        console.log(error);
+                                    })
+                            }
+                    });
             }
         }
     }
