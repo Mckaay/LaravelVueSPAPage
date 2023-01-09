@@ -5,12 +5,14 @@ import { createRouter, createWebHistory} from "vue-router";
 
 import VehiclesIndex from './components/Vehicles/Index.vue';
 import VehiclesCreate from './components/Vehicles/Create.vue';
+import VehiclesEdit from './components/Vehicles/Edit.vue';
 import App from './layouts/App';
 import { TailwindPagination } from 'laravel-vue-pagination';
 
 const routes = [
     { path: '/', name: 'cars.index', component: VehiclesIndex, meta: { title: 'Electric Vehicles Dashboard'} },
-    { path: '/cars/create', name: 'cars.create', component: VehiclesCreate, meta: { title: 'Add Electric Vehicle'} }
+    { path: '/cars/create', name: 'cars.create', component: VehiclesCreate, meta: { title: 'Add Electric Vehicle'} },
+    { path: '/cars/edit/:id', name: 'cars.edit', component: VehiclesEdit, meta: { title: 'Edit Electric Vehicle'} }
 ]
 
 

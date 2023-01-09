@@ -18,7 +18,7 @@ class CarResource extends JsonResource
             'id' => $this->id,
             'company' => $this->company,
             'model' => $this->model,
-            'price' => $this->price,
+            'price' => str_replace('$','',$this->price),
             'year' => $this->year
         ];
     }

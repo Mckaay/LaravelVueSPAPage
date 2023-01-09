@@ -27,4 +27,8 @@ class CarController extends Controller
         $car = Car::create($request->validated());
         return new CarResource($car);
     }
+
+    public function show(Car $car){
+        return new CarResource($car);
+    }
 }

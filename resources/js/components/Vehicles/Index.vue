@@ -41,7 +41,9 @@
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.model }}</td>
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.price }}</td>
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.year }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900"></td>
+                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
+                        <router-link :to =" { name: 'cars.edit', params: {id: car.id}} ">Edit</router-link>
+                    </td>
                 </tr>
                 </tbody>
             </table>
