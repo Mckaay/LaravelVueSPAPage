@@ -10,6 +10,15 @@ use App\Models\Car;
 class CarController extends Controller
 {
     public function index(){
-        return CarResource::collection(Car::paginate(5));
+        if(request('search') != ''){
+            $cars = Car::where('company','like', '%'.request('search').'%')->
+                orWhere('model','like', '%'.request('search').'%')->
+                    orWhere('price','like', '%'.request('search').'%')->
+                        orWhere('year','like', '%'.request('search').'%')
+                        ->paginate(5);
+                return CarResource::collection($cars);
+        } else {
+            return CarResource::collection(Car::paginate(5));
+        }
     }
 }
