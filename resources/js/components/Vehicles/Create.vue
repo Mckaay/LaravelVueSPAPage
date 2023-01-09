@@ -72,6 +72,10 @@
                 try{
                     const response = await axios.post('/api/cars',this.car);
                     await this.router.push({ name: 'cars.index'});
+                    this.$swal({
+                        icon: 'success',
+                        title: 'Car Saved Successfully'
+                    });
                 } catch(error) {
                     if(error.response.data) {
                         this.validationErrors = error.response.data;

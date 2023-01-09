@@ -82,6 +82,10 @@ export default {
             try{
                 const response = await axios.put('/api/cars/' + this.car.id,this.car);
                 await this.router.push({ name: 'cars.index' });
+                this.$swal({
+                    icon: 'success',
+                    title: 'Car Edited Successfully'
+                });
             } catch (error) {
                 console.log(error);
             }

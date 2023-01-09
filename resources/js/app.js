@@ -8,6 +8,7 @@ import VehiclesCreate from './components/Vehicles/Create.vue';
 import VehiclesEdit from './components/Vehicles/Edit.vue';
 import App from './layouts/App';
 import { TailwindPagination } from 'laravel-vue-pagination';
+import VueSweetalert2 from "vue-sweetalert2";
 
 const routes = [
     { path: '/', name: 'cars.index', component: VehiclesIndex, meta: { title: 'Electric Vehicles Dashboard'} },
@@ -24,5 +25,6 @@ const router = createRouter({
 
 const app = createApp(App)
 app.use(router)
-app.component('TailwindPagination', TailwindPagination);
+app.use(VueSweetalert2)
+app.component('TailwindPagination', TailwindPagination)
 app.mount('#app')
