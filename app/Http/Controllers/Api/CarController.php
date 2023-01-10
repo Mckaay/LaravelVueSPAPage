@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCarsRequest;
 use App\Http\Resources\CarResource;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use Illuminate\Support\Facades\Gate;
 
 class CarController extends Controller
 {
@@ -24,8 +25,13 @@ class CarController extends Controller
     }
 
     public function store(StoreCarsRequest $request) {
-        $car = Car::create($request->validated());
-        return new CarResource($car);
+
+        if(Gate::allows('isAdmin',auth()->user())) {
+            $car = Car::create($request->validated());
+            return new CarResource($car);
+        } else {
+            return response()->json(['error' => 'Unauthorized'],403);
+        }
     }
 
     public function show(Car $car){
@@ -38,7 +44,12 @@ class CarController extends Controller
     }
     public function destroy(Car $car)
     {
-        $car->delete();
+        if(Gate::allows('isAdmin',auth()->user())){
+            $car->delete();
+            return response()->json(null,204);
+        }
+        else{
+            return response()->json(['error' => 'Unauthorized'],403);
+        }
     }
-
 }

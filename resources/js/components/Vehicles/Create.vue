@@ -67,6 +67,9 @@
                 validationErrors: []
             }
         },
+        mounted() {
+            this.isAdmin();
+        },
         methods: {
             async storeCars(){
                 try{
@@ -81,7 +84,21 @@
                         this.validationErrors = error.response.data;
                     }
                 }
-            }
+            },
+            async isAdmin() {
+                try {
+                    const response = await axios.get('/api/is-admin');
+                    if(!response.data) {
+                        this.$router.push({name: 'cars.index'});
+                        this.$swal({
+                            icon: 'error',
+                            title: 'Only admins can access this page!'
+                        });
+                    }
+                } catch(e) {
+                    console.log(e);
+                }
+            },
         }
     }
 

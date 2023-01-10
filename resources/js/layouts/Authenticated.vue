@@ -19,10 +19,19 @@
                             <router-link :to="{ name: 'cars.index'} " active-class="border-b-2 border-indigo-400" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
                                 Electric Vehicles
                             </router-link>
-                            <router-link :to="{ name: 'cars.create'} " active-class="border-b-2 border-indigo-400" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
+                            <router-link v-if="user.is_admin" :to="{ name: 'cars.create'} " active-class="border-b-2 border-indigo-400" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
                                 Create Electric Vehicle
                             </router-link>
                         </div>
+                    </div>
+                    <div class ="flex items-center">
+                        <span>Hi, {{ user.name }}</span>
+                        <span class ="ml-2"> Email: <span class="font-bold">{{ user.email }}</span></span>
+                    </div>
+                    <div class = "flex items-center bg">
+                        <button @click = 'logout()' class="border-solid border-2 border-indigo-500 rounded-md px-3 py-1 hover:bg-indigo-500 font-bold">
+                            Logout
+                        </button>
                     </div>
                 </div>
             </div>
@@ -54,10 +63,44 @@
 
 
 <script>
-    export default {
+
+import { useRouter } from "vue-router";
+
+export default {
+    data(){
+        return {
+            router: useRouter(),
+            user: {}
+        }
+    },
         computed: {
             currentPageTitle(){
                 return this.$route.meta.title;
+            },
+        },
+        mounted() {
+            this.getUser()
+        },
+        methods: {
+            logout() {
+                axios.post('/logout')
+                    .then(() => {
+                        this.router.push({ name: 'login'})
+                    }).catch(error => {
+                        console.log(error)
+                })
+            },
+            async getUser() {
+                try{
+                    const response = await axios.get('/api/user')
+                    this.user = response.data;
+                } catch(error) {
+                    this.$swal({
+                        icon: 'error',
+                        title: 'Something went wrong! Check console.'
+                    });
+                    console.log(error);
+                }
             }
         }
     }

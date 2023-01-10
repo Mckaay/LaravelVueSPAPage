@@ -1,5 +1,4 @@
 <template>
-
     <form class="flex items-center w-96 px-6 py-2">
         <label for="simple-search" class="sr-only">Search</label>
         <div class="relative w-full">
@@ -43,7 +42,7 @@
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">{{ car.year }}</td>
                     <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
                         <router-link :to =" { name: 'cars.edit', params: {id: car.id}} ">Edit</router-link>
-                        <a href="#" @click.prevent = "deleteCar(car.id)" class = "ml-2 text-red-600">Delete</a>
+                        <a v-if="user.is_admin" href="#" @click.prevent = "deleteCar(car.id)" class = "ml-2 text-red-600">Delete</a>
                     </td>
                 </tr>
                 </tbody>
@@ -55,6 +54,7 @@
             />
         </div>
     </div>
+
 </template>
 
 <script>
@@ -65,11 +65,13 @@ import { useRouter } from 'vue-router'
             return {
                 cars: {},
                 search: '',
-                router: useRouter()
+                router: useRouter(),
+                user: {}
             }
         },
         mounted() {
             this.fetchCars();
+            this.getUser();
         },
         watch:{
             search(){
@@ -116,7 +118,6 @@ import { useRouter } from 'vue-router'
                                         this.$swal({
                                             icon:'success',
                                                 title: 'Electric Vehicle deleted successfully'
-
                                         })
                                     })
                                     .catch(error => {
@@ -128,7 +129,19 @@ import { useRouter } from 'vue-router'
                                     })
                             }
                     });
-            }
+            },
+            async getUser() {
+                try{
+                    const response = await axios.get('/api/user')
+                    this.user = response.data;
+                } catch(error) {
+                    this.$swal({
+                        icon: 'error',
+                        title: 'Something went wrong! Check console.'
+                    });
+                    console.log(error);
+                }
+            },
         }
     }
 
