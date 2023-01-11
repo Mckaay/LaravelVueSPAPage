@@ -41,6 +41,10 @@
         </div>
     </form>
 
+    <div class = "text-center mt-4">
+        Already have an account? <router-link :to =" { name: 'login'} "><span class ="text-blue-600 ml-2">Sign in</span></router-link>
+    </div>
+
 </template>
 
 
@@ -71,6 +75,10 @@ export default {
                 .then( res => {
                     console.log(res);
                     this.router.push( { name: 'login'});
+                    this.$swal({
+                        icon:'success',
+                        title: 'User Successfully Created'
+                    })
                 })
                 .catch(error => {
                     if(error.response){

@@ -28,6 +28,10 @@
         </div>
     </form>
 
+    <div class = "text-center mt-4">
+        Don't have an account? <router-link :to =" { name: 'register'} "><span class ="text-blue-600 ml-2">Register account</span></router-link>
+    </div>
+
 </template>
 
 
@@ -55,10 +59,6 @@ data() {
             axios.post('/login',this.loginForm)
                 .then( async res => {
                     await this.loginUser(res);
-                    this.$swal({
-                        icon:'success',
-                        title: 'Successfully Logged In'
-                    })
                 })
                 .catch(error => {
                     if(error.response){
@@ -68,6 +68,10 @@ data() {
         },
         loginUser(res) {
             this.router.push( { name: 'cars.index'});
+            this.$swal({
+                icon:'success',
+                title: 'Successfully Logged In'
+            })
         },
         checkIfUserIsLoggedIn(){
             axios.get('/api/authenticated')
