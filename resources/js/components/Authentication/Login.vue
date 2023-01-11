@@ -26,11 +26,11 @@
                 </button>
             </div>
         </div>
+        <div class = "text-center mt-4">
+            Don't have an account? <router-link :to =" { name: 'register'} "><span class ="text-blue-600 ml-2">Register account</span></router-link>
+        </div>
     </form>
 
-    <div class = "text-center mt-4">
-        Don't have an account? <router-link :to =" { name: 'register'} "><span class ="text-blue-600 ml-2">Register account</span></router-link>
-    </div>
 
 </template>
 

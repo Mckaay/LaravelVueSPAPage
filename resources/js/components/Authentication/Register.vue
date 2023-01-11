@@ -39,11 +39,10 @@
                 </button>
             </div>
         </div>
+        <div class = "text-center mt-4">
+            Already have an account? <router-link :to =" { name: 'login'} "><span class ="text-blue-600 ml-2">Sign in</span></router-link>
+        </div>
     </form>
-
-    <div class = "text-center mt-4">
-        Already have an account? <router-link :to =" { name: 'login'} "><span class ="text-blue-600 ml-2">Sign in</span></router-link>
-    </div>
 
 </template>
 
